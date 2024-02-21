@@ -87,8 +87,8 @@ public class HealthBucketController {
 
   @PostMapping(value = "/uploadPictures", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<String> uploadToBucket(
-          @RequestParam MultipartFile file,
-          @RequestParam String key
+          @RequestParam("file") MultipartFile file,
+          @RequestParam("key") String key
   ) throws IOException {
     File localFile = convertMultipartFileToFile(file);
     bucketComponent.upload(localFile, HEALTH_KEY + key);
