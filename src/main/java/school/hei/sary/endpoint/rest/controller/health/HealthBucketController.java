@@ -96,13 +96,14 @@ public class HealthBucketController {
     return ResponseEntity.ok("Pictures uploaded");
   }
 
-  @GetMapping("pictures/{key}")
+  @GetMapping("/pictures/{key}")
   public ResponseEntity<byte[]> getPicturesFromBucket(@PathVariable String key){
     byte[] pictureByte = bucketComponent.download(HEALTH_KEY+key).toString().getBytes();
 
     return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(pictureByte);
   }
 
+  @GetMapping("/pictures/{key}/black")
   public ResponseEntity<byte[]> getPicturesBlackAndWhite(
           @PathVariable String key
   ){
